@@ -1,5 +1,5 @@
 <?php session_start();
-
+include("advising-mailer.php");
 if(isset($_POST['action']) && $_POST['action'] != "")
 {
   include("sensitive.php");
@@ -51,6 +51,9 @@ if(isset($_POST['action']) && $_POST['action'] != "")
             mysqli_query($conn, $query);
           }
           echo true;
+		  
+		  //email_schedule($_SESSION['student']['fname'], $_SESSION['student']['emich'], $_SESSION['student']['eid']);
+		  
           break;
         }
       } else {
