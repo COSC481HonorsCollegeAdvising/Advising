@@ -15,7 +15,7 @@
         </tr>
         <tr>
           <td>
-            <select 	id="course_prefix_select" onchange="fetch_course_numbers()">
+            <select id="course_prefix_select" onchange="fetch_course_numbers()">
               <option>ACC</option>
             </select>
           </td>
