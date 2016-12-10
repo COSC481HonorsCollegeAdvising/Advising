@@ -38,8 +38,8 @@
         <?php } ?>
 
         <!-- Right Nav Section -->
-        <!--<ul class="right">
-          <li><a href="#">User Info</a></li>
-        </ul>-->
+        <ul class="right">
+          <li class="header-menu-item"><a href="account_details.php">Account</a></li>
+        </ul>
       </section>
     </nav>
