@@ -34,15 +34,6 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         echo "Current password did not match. Please try again.";
       }
       break;
-    case "forgotPassword":
-      //create a new random password with length of 5
-      $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
-      $string = '';
-      $max = strlen($characters) - 1;
-      for ($i = 0; $i < 6; $i++) {
-           $string .= $characters[mt_rand(0, $max)];
-      }
-      break;
   }
 
 }

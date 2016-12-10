@@ -5,6 +5,13 @@ body {
   margin: 0px;
   font-family: Arial;
 }
+a {
+  color: #0b4d03;
+}
+
+a:hover {
+  color: #073901;
+}
 table {
   margin: 0 auto;
   /*border: 1px solid #0b4d03;*/
@@ -77,12 +84,12 @@ td, th {
   #course-overview td {
 	text-align: center;
   }
-  
+
 /*student-info CSS*/
   #student-info td {
 	border: none;
   }
- 
+
 /*schedule css*/
   #nav-buttons button {
 	padding: .75rem 1.5rem .75rem 1.5rem;

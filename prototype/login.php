@@ -46,8 +46,9 @@ include("header.php");
 			<p>NetID</p>
 			<input type="text" name="netID"/>
 			<p>Password</p>
-			<input type="password" name="password"/><br/>
-			<div style="text-align: center; padding-top: 5px;">
+			<input type="password" name="password" style="margin-bottom: 0px;"/><br/>
+      <a href="forgot-password.php">Forgotten Password?</a>
+			<div style="text-align: center; padding-top: 20px;">
 			  <button type="submit" value="Submit">Submit</button>
 			</div>
 		  </div>
