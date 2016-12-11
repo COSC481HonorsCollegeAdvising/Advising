@@ -3,8 +3,7 @@
 	include("sensitive.php");
 	include("header.php");
 ?>
-<<<<<<< HEAD
-=======
+
 <head>
   <link rel="stylesheet" type="text/css" href="./CSS/foundation.css">
   <link rel="stylesheet" type="text/css" href="./CSS/foundation.min.css">
@@ -17,7 +16,6 @@
       <div id="header"><span id="title">Honors Advising Portal</span>
       </div>
     </div>
->>>>>>> d613e03d734c992a119aba5f908359e07c61a314
     <h1>Course Overview</h1>
     <div>
       <table>
@@ -30,11 +28,7 @@
         </tr>
         <tr>
           <td>
-<<<<<<< HEAD
-            <select id="course_prefix_select" onchange="fetch_course_numbers()">
-=======
             <select 	id="course_prefix_select" onchange="fetch_both_honors_and_course_numbers()">
->>>>>>> d613e03d734c992a119aba5f908359e07c61a314
               <option>ACC</option>
             </select>
           </td>
