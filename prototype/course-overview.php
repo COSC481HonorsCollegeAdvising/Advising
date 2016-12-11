@@ -1,5 +1,5 @@
 <html>
-<?php 
+<?php
 	include("sensitive.php");
 ?>
 <head>
@@ -7,6 +7,7 @@
   <link rel="stylesheet" type="text/css" href="./CSS/foundation.min.css">
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
 	<script src="./JS/jquery-3.1.1.min.js"></script>
+	<script src="course-overview-helper-funcs.js"></script>
 </head>
   <body>
     <div id="container" class="row">
@@ -19,13 +20,13 @@
         <tr>
           <th>Prefix</th>
           <th>Course No.</th>
-					<th>Advisor</th>
+					<!--<th>Advisor</th>-->
           <th>Honors</th>
           <th>CRN</th>
         </tr>
         <tr>
           <td>
-            <select 	id="course_prefix_select" onchange="fetch_course_numbers()">
+            <select 	id="course_prefix_select" onchange="fetch_both_honors_and_course_numbers()">
               <option>ACC</option>
             </select>
           </td>
@@ -34,13 +35,13 @@
               <option>-Select-</option>
             </select>
           </td>
-					<td>
+					<!--<td>
             <select id="advisor_select">
               <option>-Select-</option>
             </select>
-          </td>
+          </td>-->
           <td>
-            <select>
+            <select id="honors_select">
               <option>-Both-</option>
             </select>
           </td>
@@ -51,9 +52,13 @@
           </td>
         </tr>
       </table>
+			<div id="options" style="margin-top: 10px;">
+				<!--<button id="reset_filters_button"> Reset Filters </button>-->
+				<button id="submit" onclick="fetch_and_fill_table()"> Submit </button>
+			</div>
       <div class="page">
         <span><b>Selected Courses</b></span>
-        <table style="margin-top: 20px;">
+        <table id="course_info_table" style="margin-top: 10px;">
           <tr>
             <th>Prefix</th>
             <th>Course No.</th>
@@ -64,46 +69,6 @@
             <th>Capacity</th>
             <th>Action</th>
           </tr>
-          <tr>
-            <td>COSC</td>
-            <td>111</td>
-            <td>18792</td>
-            <td>Yes</td>
-            <td>4</td>
-            <td>0</td>
-            <td>20</td>
-            <td><button onclick="window.location.href='section-details.php'">Details</button></td>
-          </tr>
-          <tr>
-            <td>COSC</td>
-            <td>111</td>
-            <td>17293</td>
-            <td>No</td>
-            <td>2</td>
-            <td>0</td>
-            <td>35</td>
-            <td><button>Details</button></td>
-          </tr>
-          <tr>
-            <td>COSC</td>
-            <td>111</td>
-            <td>10293</td>
-            <td>No</td>
-            <td>3</td>
-            <td>0</td>
-            <td>35</td>
-            <td><button>Details</button></td>
-          </tr>
-          <tr>
-            <td>COSC</td>
-            <td>111</td>
-            <td>10293</td>
-            <td>No</td>
-            <td>1</td>
-            <td>0</td>
-            <td>35</td>
-            <td><button>Details</button></td>
-          </tr>
         </table>
       </div>
       <div style="margin-top: 10px;">
@@ -112,62 +77,7 @@
     </div>
 
     <script>
-    function fetch_course_prefixes() {
-      $.ajax({
-        method: "POST",
-        url: "course-overview-funcs.php",
-        data: {action: "fetch_course_prefixes"},
-        success: function(output) {
-					try{
-						var prefixes = JSON.parse(output);
-						prefixes.sort();
-
-						var options_string = "<option>-Select-</option>";
-						for(let the_prefix of prefixes){
-							options_string += "<option>" + the_prefix + "</option>";
-						}
-
-						var prefix_select = document.getElementById("course_prefix_select");
-						prefix_select.innerHTML = options_string;
-					}catch(e){
-						alert("error:" . e);
-					}
-        }
-      });
-    }
-
-	function fetch_course_numbers() {
-		var selected_course_prefix = document.getElementById("course_prefix_select").value;
-		if (selected_course_prefix == "-Select-") {
-			var course_select = document.getElementById("course_number_select");
-			course_select.innerHTML = "<option>-Select-</option>";
-			return;
-		}
-		$.ajax({
-			method: "POST",
-			url: "course-overview-funcs.php",
-			data: {action: "fetch_course_numbers", course_prefix: selected_course_prefix},
-			success: function(output) {
-
-				try {
-						var course_numbers = JSON.parse(output);
-						course_numbers.sort();
-						course_numbers_string = "<option>-Select-</option>";
-						for (let num of course_numbers) {
-							course_numbers_string += "<option>" + num + "</option>";
-						}
-
-						var course_select = document.getElementById("course_number_select");
-						course_select.innerHTML = course_numbers_string;
-				}catch(e){
-					alert("error: " . e)
-				}
-			}
-		});
-
-	}
-
-	fetch_course_prefixes();
+			fetch_course_prefixes();
     </script>
 
   </body>
