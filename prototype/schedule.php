@@ -224,23 +224,19 @@ include("header.php");
           defaultView: 'agendaWeek',
           scrollTime: '07:30:00',
           slotDuration: '00:30:00',
-          year: 2016,
-          month: 12,
-          date: 6,
           allDaySlot: false,
           minTime:"07:00:00",
           maxTime:"22:00:00"
       });
-
-      //Rename all headers to generic week.
-      $(".fc-day-header.fc-mon").html("Mon");
+			
+			$("#calendar").fullCalendar("gotoDate", moment("2016-12-06", "YYYY-MM-DD"));
+			$(".fc-day-header.fc-mon").html("Mon");
       $(".fc-day-header.fc-tue").html("Tue");
       $(".fc-day-header.fc-wed").html("Wed");
       $(".fc-day-header.fc-thu").html("Thu");
       $(".fc-day-header.fc-fri").html("Fri");
       $(".fc-day-header.fc-sat").html("Sat");
       $(".fc-day-header.fc-sun").html("Sun");
-
       if(classArr.length > 0)
         selectCourses(0);
 
@@ -345,6 +341,7 @@ include("header.php");
           {
             var event = {title:class_str, start: dayArr[j]+'T'+start, end: dayArr[j]+'T'+end, id:index};
             $("#calendar").fullCalendar('renderEvent', event);
+						console.log(event);
           }
           /*  replaceStr += "<tr>"+
             "<td>"+classArr[index][i]['coursePrefix']+"</td>"+
