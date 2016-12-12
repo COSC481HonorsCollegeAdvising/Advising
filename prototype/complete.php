@@ -2,36 +2,14 @@
 
   include("sensitive.php");
 
+  if(!isset($_SESSION['user']['netID']) || $_SESSION['user']['netID'] == "")
+  {
+  	header("Location: login.php");
+  	die();
+  }
+
   if(isset($_SESSION['student']['eid']) && $_SESSION['student']['eid'] != "")
   {
-    /*// Check connection
-    if (mysqli_connect_errno()) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-
-    $query = "SELECT *
-              FROM STUDENT
-              WHERE EID = '".$_SESSION['student']['eid']."'";
-
-    $result = mysqli_query($conn, $query);
-    if (mysql_num_rows($result)==0)
-    {
-      $query = "INSERT INTO STUDENT
-                VALUES ('".$_SESSION['student']['eid']."','".$_SESSION['student']['fname']."',
-                '".$_SESSION['student']['lname']."', '".$_SESSION['student']['emich']."')";
-      $query = mysqli_real_escape_string($conn, strip_tags($query));
-      mysqli_query($conn, $query);
-    }
-
-    $query = "INSERT INTO SCHEDULE
-              (scheduleDate, EID, advisorNetID)
-              VALUES ('".date('Y-m-d')."','".$_SESSION['student']['eid']."',
-              '".$_SESSION['user']['netID']."')";
-
-    mysqli_query($conn, $query);*/
-
-
-
     //unset the student session
     unset($_SESSION['student']);
   } else {

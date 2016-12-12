@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 //check for login
 if(!isset($_SESSION['user']['netID']) || $_SESSION['user']['netID'] == "")
 {
