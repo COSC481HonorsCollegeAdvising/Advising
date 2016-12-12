@@ -1,5 +1,17 @@
 <?php
   session_start();
+
+  if(!isset($_SESSION['user']['netID']) || $_SESSION['user']['netID'] == "")
+  {
+  	header("Location: login.php");
+  	die();
+  }
+  if(!isset($_SESSION['user']['isAdmin']) || $_SESSION['user']['isAdmin'] != 1)
+  {
+  	header("Location: home.php");
+  	die();
+  }
+
   include("sensitive.php");
 
   // Check connection
@@ -38,47 +50,20 @@
       <div style="text-align: center; padding-bottom: 10px;">
         <span><b>Add Advisor</b></span>
       </div>
-<!--      <table class="add">
-        <tr>
-          <td><span>First Name:</span></td>
-          <td><input id="fname" type="text"/></td>
-        </tr>
-        <tr>
-          <td><span>Last Name:</span></td>
-          <td><input id="lname" type="text"/></td>
-        </tr>
-        <tr>
-          <td><span>NetID:</span></td>
-          <td><input id="emich" type="text"/></td>
-        </tr>
-        <tr>
-          <td><span>Temporary Password:</span></td>
-          <td><input id="password" type="password"/></td>
-        </tr>
-        <tr>
-          <td><span>Confirm Password:</span></td>
-          <td><input id="password2" type="password"/></td>
-        </tr>
-      </table>
--->
       <div class="row">
-        <div class="small-12 columns centered">
+        <div class="small-4 columns centered">
           <label>
             First Name:
             <input id="fname" type="text"/>
           </label>
         </div>
-      </div>
-      <div class="row">
-        <div class="small-12 columns centered">
+        <div class="small-4 columns centered">
           <label>
             Last Name:
             <input id="lname" type="text"/>
           </label>
         </div>
-      </div>
-      <div class="row">
-        <div class="small-12 columns centered">
+        <div class="small-4 columns centered">
           <label>
             NetID:
             <input id="emich" type="text"/>
@@ -86,15 +71,13 @@
         </div>
       </div>
       <div class="row">
-        <div class="small-12 columns centered">
+        <div class="small-6 columns centered">
           <label>
             Temporary Password:
             <input id="password" type="text"/>
           </label>
         </div>
-      </div>
-      <div class="row">
-        <div class="small-12 columns centered">
+        <div class="small-6 columns centered">
           <label>
             Confirm Password:
             <input id="password2" type="text"/>

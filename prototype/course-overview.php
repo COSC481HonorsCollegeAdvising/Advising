@@ -1,22 +1,23 @@
-<html>
 <?php
+	session_start();
+	//check for login
+	if(!isset($_SESSION['user']['netID']) || $_SESSION['user']['netID'] == "")
+	{
+		header("Location: login.php");
+		die();
+	}
+
 	include("sensitive.php");
 	include("header.php");
 ?>
-
-<head>
-  <link rel="stylesheet" type="text/css" href="./CSS/foundation.css">
-  <link rel="stylesheet" type="text/css" href="./CSS/foundation.min.css">
-  <link rel="stylesheet" type="text/css" href="./CSS/global.css">
-	<script src="./JS/jquery-3.1.1.min.js"></script>
+	<!--<script src="./JS/jquery-3.1.1.min.js"></script> -->
 	<script src="course-overview-helper-funcs.js"></script>
-</head>
-  <body>
-    <div id="container" class="row">
-      <div id="header"><span id="title">Honors Advising Portal</span>
-      </div>
-    </div>
-    <h1>Course Overview</h1>
+	<style>
+		select {
+			margin-right: 20px;
+		}
+	</style>
+    <h3 style="margin-top: 25px;">Course Overview</h3>
     <div>
       <table>
         <tr>

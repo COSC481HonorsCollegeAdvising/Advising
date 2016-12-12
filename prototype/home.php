@@ -1,13 +1,10 @@
 <?php
   session_start();
 
-  if($_SESSION['user']['netID'])
+  if(!isset($_SESSION['user']['netID']) || $_SESSION['user']['netID'] == "")
   {
-    //do session things here, like get admin permission
-  } else {
-    //if nobody is logged in, send to login page
-    header("Location: login.php");
-    die();
+  	header("Location: login.php");
+  	die();
   }
 
   include("header.php");

@@ -1,17 +1,16 @@
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="./CSS/foundation.css">
-  <link rel="stylesheet" type="text/css" href="./CSS/foundation.min.css">
-  <link rel="stylesheet" type="text/css" href="./CSS/global.css">
-	<script src="./JS/jquery-3.1.1.min.js"></script>
-	<script src="section-detail-helper-funcs.js"></script>
+<?php
+session_start();
 
-</head>
-  <body>
-    <div id="container" class="row">
-      <div id="header"><span id="title">Honors Advising Portal</span>
-      </div>
-    </div>
+//check for login
+if(!isset($_SESSION['user']['netID']) || $_SESSION['user']['netID'] == "")
+{
+	header("Location: login.php");
+	die();
+}
+
+include("header.php");
+?>
+	<script src="section-detail-helper-funcs.js"></script>
     <div>
       <div class="page">
 			<span><b>Section Details</b></span>

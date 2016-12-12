@@ -1,6 +1,12 @@
 <?php
   session_start();
 
+  if(!isset($_SESSION['user']['netID']) || $_SESSION['user']['netID'] == "")
+  {
+  	header("Location: login.php");
+  	die();
+  }
+  
 	include("sensitive.php");
   include("header.php");
 
@@ -66,7 +72,7 @@
       </div>
       <div class="row">
 	    <div class="large-offset-4 large-4 columns">
-          <label> <b>Emich Email:</b> 
+          <label> <b>Emich Email:</b>
           <input type="text" name="emich" placeholder="jdoe123"/>
           </label>
         </div>
