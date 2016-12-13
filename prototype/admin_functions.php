@@ -20,18 +20,21 @@ switch($action) {
     echo true;
     break;
   case 'addAdvisor':
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
+    $fname = mysqli_real_escape_string($conn, strip_tags($_POST['fname']));
+    $lname = mysqli_real_escape_string($conn, strip_tags($_POST['lname']));
     $password = $_POST['password'];
     $password = password_hash($password, PASSWORD_BCRYPT);
-    $netID = $_POST['netID'];
+    $netID = mysqli_real_escape_string($conn, strip_tags($_POST['netID']));
+
     $query = "INSERT INTO ADVISOR
               VALUES ('".$netID."', '".$fname."',
               '".$lname."', 0,'".$password."')";
-    $query = mysqli_real_escape_string($conn, strip_tags($query));
+    //$query = mysqli_real_escape_string($conn, strip_tags($query));
 
-    mysqli_query($conn, $query);
-    echo true;
+    if(!$result = mysqli_query($conn, $query))
+    {
+      echo("Error description: " . mysqli_error($conn));
+    } else echo true;
     break;
 
   case 'removeAdvisor':

@@ -1,5 +1,5 @@
 <?php session_start();
-include("advising-mailer.php");
+//include("advising-mailer.php");
 if(isset($_POST['action']) && $_POST['action'] != "")
 {
   include("sensitive.php");
@@ -19,12 +19,19 @@ if(isset($_POST['action']) && $_POST['action'] != "")
                   WHERE EID = '".$_SESSION['student']['eid']."'";
 
         $result = mysqli_query($conn, $query);
-        if (mysql_num_rows($result)==0)
+
+        $student_fname = mysqli_real_escape_string($conn, strip_tags($_SESSION['student']['fname']));
+        $student_lname = mysqli_real_escape_string($conn, strip_tags($_SESSION['student']['lname']));
+
+        if (mysqli_num_rows($result)==0)
         {
           $query = "INSERT INTO STUDENT
-                    VALUES ('".$_SESSION['student']['eid']."','".$_SESSION['student']['fname']."',
-                    '".$_SESSION['student']['lname']."', '".$_SESSION['student']['emich']."')";
-          mysqli_query($conn, $query);
+                    VALUES ('".$_SESSION['student']['eid']."','".$student_fname."',
+                    '".$student_lname."', '".$_SESSION['student']['emich']."')";
+          if(!$result = mysqli_query($conn, $query))
+          {
+            echo("Error description: " . mysqli_error($conn));
+          }
         }
 
         $query = "INSERT INTO SCHEDULE
@@ -32,7 +39,10 @@ if(isset($_POST['action']) && $_POST['action'] != "")
                   VALUES ('".date('Y-m-d')."','".$_SESSION['student']['eid']."',
                   '".$_SESSION['user']['netID']."')";
 
-        mysqli_query($conn, $query);
+        if(!$result = mysqli_query($conn, $query))
+        {
+          echo("Error description: " . mysqli_error($conn));
+        }
         $scheduleID = mysqli_insert_id($conn);
         if($scheduleID <= 0)
         {
@@ -47,13 +57,16 @@ if(isset($_POST['action']) && $_POST['action'] != "")
             $query = "INSERT INTO COURSE_ADVISED
                       (CRN, term, scheduleID)
                       VALUES ('".$val['CRN']."', '".$val['term']."', ".$scheduleID.")";
-                      
-            mysqli_query($conn, $query);
+
+            if(!$result = mysqli_query($conn, $query))
+            {
+              echo("Error description: " . mysqli_error($conn));
+            }
           }
           echo true;
-		  
+
 		  //email_schedule($_SESSION['student']['fname'], $_SESSION['student']['emich'], $_SESSION['student']['eid']);
-		  
+
           break;
         }
       } else {

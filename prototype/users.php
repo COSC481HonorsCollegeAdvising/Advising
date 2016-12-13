@@ -74,13 +74,13 @@
         <div class="small-6 columns centered">
           <label>
             Temporary Password:
-            <input id="password" type="text"/>
+            <input id="password" type="password"/>
           </label>
         </div>
         <div class="small-6 columns centered">
           <label>
             Confirm Password:
-            <input id="password2" type="text"/>
+            <input id="password2" type="password"/>
           </label>
         </div>
       </div>
@@ -151,8 +151,12 @@
            data: {action: 'addAdvisor', fname: firstName, lname: lastName, netID: netID, password: password},
            type: 'post',
            success: function(output) {
-                        window.location.reload();
-                    }
+             if(output != 1){
+              alert(output);
+            } else {
+                window.location.reload();
+            }
+          }
         });
       } else {
         alert("The passwords did not match.");
