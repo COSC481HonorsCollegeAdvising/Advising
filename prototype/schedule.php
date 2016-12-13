@@ -228,7 +228,7 @@ include("header.php");
           minTime:"07:00:00",
           maxTime:"22:00:00"
       });
-			
+
 			$("#calendar").fullCalendar("gotoDate", moment("2016-12-06", "YYYY-MM-DD"));
 			$(".fc-day-header.fc-mon").html("Mon");
       $(".fc-day-header.fc-tue").html("Tue");
@@ -261,7 +261,6 @@ include("header.php");
           }
         }
       });
-      window.location.href='complete.php'
     }
 
     function byOne(sign)

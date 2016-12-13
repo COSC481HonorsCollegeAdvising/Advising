@@ -41,12 +41,18 @@ include("header.php");
 			margin-right: 20px;
 		}
 	</style>
-		<div class="row">
+		<div class="row" style="padding-top: 25px;">
 			<div class="large-6 columns large-centered">
     		<h3>Select Student Courses</h3>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" style="padding-top: 10px; color: #545454">
+			<div class="large-12 columns large-centered">
+				<span><i>To get the possible course combinations, please enter in
+				the prefix and course number for every course to advise.</i></span>
+			</div>
+		</row>
+		<div class="row" style="padding-top: 15px;">
 	    <div class="large-12 columns">
 				<form action="schedule.php" method="post" id="schedule">
 		      <table>
@@ -145,7 +151,11 @@ include("header.php");
 			var valid = true;
 			for(var i = 0; i < prefixes.length; i++)
 			{
-				if(prefixes[i].value == "" || courses[i].value == "") valid = false;
+				if(prefixes[i].value == "" || courses[i].value == ""){
+					 valid = false;
+					 alert("Please enter a prefix and course number for every course.");
+					 break;
+				 }
 			}
 			if(valid)
 				document.getElementById('schedule').submit();

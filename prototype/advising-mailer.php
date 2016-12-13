@@ -2,15 +2,15 @@
   session_start();
   require_once('Mail.php');
   require_once('Mail/mime.php');
-  
-  
+
+
   function email_schedule($student_name, $student_email, $student_eid) {
-	  
+
 		$sqlID = "SELECT scheduleID
 					FROM SCHEDULE
 					WHERE EID = '".$student_eid."'";
-		$scheduleIdNum = mysqli_query($conn, $sqlID));
-		  
+		$scheduleIdNum = mysqli_query($conn, $sqlID);
+
 		$sqlCRNs = "SELECT CRN
 					FROM COURSE_ADVISED
 					WHERE scheduleID = '".$scheduleIdNum."'";
@@ -31,13 +31,13 @@
 						  <td>".$courseArr['timeStart']."</td>
 						  <td>".$courseArr['timeEnd']."</td>
 						  <td>".$courseArr['credits']."</td></tr>";
-						  
+
 		}
-		
+
 		$scheduleString = $scheduleString."</table>";
-	    
+
 		$message = "<p>Dear ".$student_name.",</p>
-					<p>The following is the list of courses you selected today at your honors 
+					<p>The following is the list of courses you selected today at your honors
 					advising appointment:
 					<br/>".$scheduleString."</p>
 					<p>If you have any questions, please contact your advisor.</p>";
@@ -46,7 +46,7 @@
 		$subject = "Advised Schedule Details";
 		mail_any($target_email,$message,$from_email,$subject);
 	}
-  
+
   function mail_any($target_email, $message, $from_email, $subject) {
 
         $headers = array(

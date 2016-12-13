@@ -1,6 +1,7 @@
 <?php
 session_start();
 session_unset();
+$badLogin = false;
 if($_POST['netID'] && $_POST['password'])
 {
   include("sensitive.php");
@@ -27,6 +28,8 @@ if($_POST['netID'] && $_POST['password'])
 
     header("Location: home.php");
     die();
+  } else if(isset($_POST['password'])) {
+    $badLogin = true;
   } else {
     //give some false error here
   }
@@ -42,11 +45,15 @@ include("header.php");
 		  <div id="login" class="large-offset-4 large-4 columns">
 			<div style="text-align: center;">
 			  <span><b>Login</b></span>
+        <?php if($badLogin) { ?>
+          <br/>
+          <span style="color: #ff0000">Bad username or password. Please try again.</span>
+        <?php }?>
 			</div>
 			<p>NetID</p>
-			<input type="text" name="netID"/>
+			<input type="text" name="netID" style ="<?php if($badLogin) echo 'border: 1px solid #ff0000'?>" />
 			<p>Password</p>
-			<input type="password" name="password" style="margin-bottom: 0px;"/><br/>
+			<input type="password" name="password" style="margin-bottom: 0px; <?php if($badLogin) echo 'border: 1px solid #ff0000'?>"/><br/>
       <a href="forgot-password.php">Forgotten Password?</a>
 			<div style="text-align: center; padding-top: 20px;">
 			  <button type="submit" value="Submit">Submit</button>
